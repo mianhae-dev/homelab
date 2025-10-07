@@ -1,0 +1,22 @@
+# === System Files ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+
+# === Editors & IDEs ===
+.idea/
+.vscode/
+*.iml
+*.code-workspace
+.vscode-test/
+.project
+.settings/
+*.sw?
+*.un~
+.cache/
+tags
