@@ -25,5 +25,5 @@ runs:
         node-version: '20'
 
     - name: Install Commitizen
-      run: npm install -g commitizen
       shell: bash
+      run: npm install -g commitizen

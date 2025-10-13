@@ -9,7 +9,7 @@ on:
       branch:
         description: 'branch to test'
         required: false
-        default: main
+        default: "dev/6-automate-version-bump-with-ci"
 
 jobs:
   bump-version:
