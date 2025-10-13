@@ -1,6 +1,15 @@
 name: "Version Bump"
 description: "Automated Commitizen version bump"
 
+inputs:
+  branch:
+    description: "Branch to push version bump"
+    required: false
+    default: "main"
+  github_token:
+    description: "GitHub token for authentication"
+    required: true
+
 runs:
   using: composite
   steps:
@@ -9,3 +18,11 @@ runs:
       with:
         ref: ${{ inputs.branch }}
         token: ${{ inputs.github_token }}
+
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        
+    - name: Install Commitizen
+      run: npm install -g commitizen
