@@ -1,0 +1,12 @@
+name: Automated Version Bump
+
+on:
+  push:
+    branches: [ "dev/6-automate-version-bump-with-ci" ]
+  
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'branch to test'
+        required: false
+        default: main
