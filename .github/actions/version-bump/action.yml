@@ -8,4 +8,4 @@ runs:
       uses: actions/checkout@v3
       with:
         ref: ${{ inputs.branch }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.github_token }}
