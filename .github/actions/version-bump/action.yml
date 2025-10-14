@@ -28,6 +28,10 @@ runs:
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
+    - name: Check branch
+      shell: bash
+      run: git branch
+
     - name: Bump version
       shell: bash
       run: |
