@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
       - uses: ./.github/actions/version-bump
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
