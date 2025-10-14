@@ -2,28 +2,28 @@ name: "Version Bump"
 description: "Automated Commitizen version bump"
 
 inputs:
-  branch:
-    description: "Branch to push version bump"
-    required: false
-    default: "main"
   github_token:
     description: "GitHub token for authentication"
     required: true
+  python-version:
+    description: "Python version to use"
+    required: false
+    default: "3.11"
 
 runs:
   using: composite
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+  steps: 
+    - name: Setup Python
+      uses: actions/setup-python@v4
       with:
-        ref: ${{ inputs.branch }}
-        token: ${{ inputs.github_token }}
-
-    - name: Set up Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+        python-version: ${{ inputs.python-version }}
 
     - name: Install Commitizen
       shell: bash
-      run: npm install -g commitizen
+      run: pip install commitizen
+
+    - name: Configure Git
+      shell: bash
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
