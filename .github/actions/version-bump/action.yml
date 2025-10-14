@@ -35,5 +35,5 @@ runs:
     - name: Bump version
       shell: bash
       run: |
-        cz bump --yes --changelog
+        cz bump --yes
         cat CHANGELOG.md  # Debug: show what was generated
