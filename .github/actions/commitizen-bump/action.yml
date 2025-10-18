@@ -1,0 +1,55 @@
+name: "Commitizen Bump"
+description: "Bump semantic version and update changelog"
+
+inputs:
+  token:
+    description: "GitHub token to use"
+    required: true
+  python-version:
+    description: "Python version to use"
+    required: false
+    default: "3.11"
+  git-user:
+    description: "Git user to use"
+    required: false
+    default: "github-actions[bot]"
+  git-user-email:
+    description: "Git user email to use"
+    required: false
+    default: "github-actions[bot]@users.noreply.github.com"
+  git-branch:
+    description: "Git branch to update"
+    required: false
+    default: ${{ github.ref_name }}
+
+runs:
+  using: composite
+  steps:
+    - name: "Dependency: Setup Python"
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: "Dependency: Install Commitizen"
+      shell: bash
+      run: pip install commitizen
+
+    - name: "Action: Configure Git"
+      shell: bash
+      run: |
+        git config user.name ${{ inputs.git-user }}
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: "Action: Bump version"
+      shell: bash
+      run: |
+        cz bump --yes
+
+    - name: Publish changelog
+      uses: ad-m/github-push-action@master
+      with:
+        branch: ${{ inputs.git-branch }}
+        github_token: ${{ inputs.token }}
+        tags: true
+        force: true
+
